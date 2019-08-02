@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+NODE_VERSION='v10.16.0'
+
+unsetVar()
+{
+  unset NODE_VERSION
+}
 
 # 更换apt源
 cp /etc/apt/sources.list /etc/apt/sources.list.bak
@@ -32,3 +38,8 @@ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | 
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update && sudo apt-get install yarn
+
+# install node
+source $HOME/.zshrc
+NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
+nvm install $NODE_VERSION
