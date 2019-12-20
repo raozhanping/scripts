@@ -37,11 +37,11 @@ print_info() {
 wsl_automount() {
   print_info "wsl auto mount."
 
-  echo '[automount]
+  sh -c "echo '[automount]
 enabled = true
 root = /mnt
-options = "metadata,umask=22,fmask=11"
-mountFsTab = false' > /etc/wsl.conf
+options = \"metadata,umask=22,fmask=11\"
+mountFsTab = false' > /etc/wsl.conf"
 }
 
 update_apt_list() {
@@ -63,7 +63,7 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
 install_nvm() {
   print_info "install nvm."
 
-  sudo apt-get install build-essential libssl-dev
+  apt-get install build-essential libssl-dev
   wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
   # curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | bash
 
@@ -79,9 +79,9 @@ install_node() {
 install_yarn() {
   print_info "install yarn."
 
-  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-  sudo apt-get update && sudo apt-get install yarn
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+  apt-get update && apt-get install yarn
 }
 
 install_oh_my_zsh() {
@@ -94,14 +94,14 @@ install_oh_my_zsh() {
 main()
 {
   setup_color
-  
+
   wsl_automount
   update_apt_list
 
-  sudo apt update
-  sudo apt upgrade
+  apt update
+  apt upgrade
 
-  sudo apt install zsh
+  apt install zsh
 
   install_nvm
   install_node
