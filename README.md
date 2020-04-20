@@ -1,4 +1,6 @@
 # scripts
+- [windows alias](./windows/README.md)
+- [FE develop env](#init-fe-develop-enviorment)
 
 ##### Init FE develop enviorment
 
