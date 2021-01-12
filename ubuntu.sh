@@ -35,6 +35,26 @@ print_info() {
   echo
 }
 
+is_cmd_exist()
+{
+    command -v $1 >/dev/null 2>&1 || return 1
+    return 0
+}
+
+install_deps()
+{
+  echo $@
+  for dep in $@
+  do
+    is_cmd_exist $dep
+    if $? -eq 1
+    # 命令不存在
+    then
+      sudo apt install $dep
+    fi
+  done
+}
+
 wsl_automount() {
   print_info "wsl auto mount."
 
@@ -95,6 +115,7 @@ install_oh_my_zsh() {
 main()
 {
   setup_color
+  install_deps wget
 
   wsl_automount
   update_apt_list
