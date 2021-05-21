@@ -5,7 +5,7 @@
 ##### Init FE develop enviorment
 
 ```shell
-sh -c "curl https://raw.githubusercontent.com/raozhanping/scripts/master/ubuntu.sh | bash"
+sh -c "curl https://raw.githubusercontent.com/raozhanping/scripts/master/install.sh | bash"
 
 # root mode
 sudo !!
