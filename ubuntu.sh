@@ -131,7 +131,7 @@ print_info "更新zsh配置"
 if [ -s $HOME/.zshrc ]; then
   mv $HOME/.zshrc $HOME/.zshrc.bak
 fi
-cat ./zshrc.conf > $HOME/.zshrc
+curl 'https://raw.githubusercontent.com/raozhanping/scripts/master/zshrc.conf' > $HOME/.zshrc
 source $HOME/.zshrc
 printf %s "$GREEN"
 cat <<'EOF'
