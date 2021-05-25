@@ -1,3 +1,5 @@
+set -e
+
 WOKDIR=$HOME/.fe
 CUR_PATH=$(pwd)
 
@@ -25,7 +27,9 @@ fi
 cd $WOKDIR
 curl -O https://raw.githubusercontent.com/raozhanping/scripts/master/ubuntu.sh
 curl -O https://raw.githubusercontent.com/raozhanping/scripts/master/zshrc.conf
-sudo bash ./ubuntu.sh
+
+# export ZSH
+sudo -E bash ./ubuntu.sh
 cd $CUR_PATH
 
 printf %s "$GREEN"

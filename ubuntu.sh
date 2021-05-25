@@ -28,7 +28,6 @@ error() {
   echo ${RED}"Error:"${RESET} >&2
 }
 print_info() {
-  echo
   echo "${BLUE}[Tools]: $@ ${RESET}"
   echo
 }
@@ -86,6 +85,7 @@ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.31.4/install.sh | 
 source $HOME/.nvm/nvm.sh
 
 # ================ 安装 node ================
+echo
 print_info "install node ${NODE_VERSION}."
 
 NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
@@ -102,7 +102,8 @@ apt-get update && apt-get install yarn
 # ================ 安装 oh-my-zsh ================
 print_info "install oh-my-zsh."
 
-if ! [ -e $ZSH ]; then
+if ! test -n "${ZSH}" -a -e "${ZSH}"; then
+  apt-get install zsh
   sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 fi
 
@@ -123,7 +124,7 @@ if is_cmd_exist python; then
 elif is_cmd_exist python3; then
   python3 ./install.py
 fi
-cd $CUR_PATH
+cd $WOKDIR
 
 # ================ 更新zsh配置 ================
 print_info "更新zsh配置"
@@ -131,4 +132,5 @@ if [ -s $HOME/.zshrc ]; then
   mv $HOME/.zshrc $HOME/.zshrc.bak
 fi
 cat ./zshrc.conf > $HOME/.zshrc
+
 source $HOME/.zshrc
