@@ -1,7 +1,7 @@
 set -e
 
-WOKDIR=$HOME/.fe
-CUR_PATH=$(pwd)
+export WORKDIR=$HOME/.fe
+export CUR_PATH=$(pwd)
 
 # Only use colors if connected to a terminal
 if [ -t 1 ]; then
@@ -20,11 +20,11 @@ else
   RESET=""
 fi
 
-if ! test -e $WOKDIR;then
-  mkdir -p $WOKDIR
+if ! test -e $WORKDIR;then
+  mkdir -p $WORKDIR
 fi
 
-cd $WOKDIR
+cd $WORKDIR
 curl -O https://raw.githubusercontent.com/raozhanping/scripts/master/ubuntu.sh
 curl -O https://raw.githubusercontent.com/raozhanping/scripts/master/zshrc.conf
 

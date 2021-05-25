@@ -107,7 +107,6 @@ if ! test -n "${ZSH}" -a -e "${ZSH}"; then
   sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 fi
 
-# CUR_PATH=$(pwd)
 TEMP_FOLDER=$HOME/temp
 # ================ autojump ================
 if ! [ -e $TEMP_FOLDER ]; then
@@ -124,7 +123,7 @@ if is_cmd_exist python; then
 elif is_cmd_exist python3; then
   python3 ./install.py
 fi
-cd $WOKDIR
+cd $WORKDIR
 
 # ================ 更新zsh配置 ================
 print_info "更新zsh配置"
